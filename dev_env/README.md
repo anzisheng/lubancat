@@ -6,8 +6,8 @@
 
 | 例程目录            | 对应教程章节                      |
 | ------------------ | ---------------------------------|
-| rknpu2             | RKNN API库                       |
-| rknn_toolkit2      | RKNN Toolkit2介绍                |
+| rknpu2             | rknpu2                          |
+| rknn_toolkit2      | RKNN Toolkit2介绍               |
 | rknn_toolkit_lite2 | rknn_toolkit_lite2介绍           |
 
 

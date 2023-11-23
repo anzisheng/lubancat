@@ -7,6 +7,8 @@
 | 目录               | 对应教程模块                       |
 | ------------------ | --------------------------------- |
 | dev_env            | 开发环境                          |
+| base               | 基础知识                         |
+| example            | 基础示例                         |
 
 
 # 配套教程链接
@@ -19,3 +21,5 @@ https://doc.embedfire.com/linux/rk356x/Ai/zh/latest/index.html
 https://github.com/rockchip-linux/rknn-toolkit2
 
 https://github.com/rockchip-linux/rknpu2
+
+https://github.com/airockchip/rknn_model_zoo
