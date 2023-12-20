@@ -8,7 +8,7 @@
 | ------------------ | --------------------------------- |
 | dev_env            | 开发环境                          |
 | base               | 基础知识                         |
-| example            | 基础示例                         |
+| example            | 模型例程                         |
 
 
 # 配套教程链接
@@ -17,6 +17,8 @@ https://doc.embedfire.com/linux/rk356x/Ai/zh/latest/index.html
 
 
 # 参考链接
+
+https://github.com/airockchip/rknn-toolkit2
 
 https://github.com/rockchip-linux/rknn-toolkit2
 
