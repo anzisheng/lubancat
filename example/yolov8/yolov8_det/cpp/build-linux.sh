@@ -8,6 +8,10 @@ while getopts ":t:a:d:b:m" opt; do
     t)
       TARGET_SOC=$OPTARG
       ;;
+    d)
+      ENABLE_DMA32=ON
+      export ENABLE_DMA32=TRUE
+      ;;
     :)
       echo "Option -$OPTARG requires an argument." 
       exit 1
@@ -32,8 +36,6 @@ case ${TARGET_SOC} in
         ;;
     rk3588)
         ;;
-    rv1106)
-        ;;
     rk3566)
         TARGET_SOC="rk356x"
         ;;
@@ -50,6 +52,11 @@ case ${TARGET_SOC} in
         ;;
 esac
 
+# RGA2 only support under 4G memory
+if [[ -z ${ENABLE_DMA32} ]];then
+    ENABLE_DMA32=OFF
+fi
+
 GCC_COMPILER=aarch64-linux-gnu
 export CC=${GCC_COMPILER}-gcc
 export CXX=${GCC_COMPILER}-g++
@@ -62,6 +69,7 @@ echo "==================================="
 echo "TARGET_SOC=${TARGET_SOC}"
 echo "INSTALL_DIR=${INSTALL_DIR}"
 echo "BUILD_DIR=${BUILD_DIR}"
+echo "ENABLE_DMA32=${ENABLE_DMA32}"
 echo "CC=${CC}"
 echo "CXX=${CXX}"
 echo "==================================="
@@ -77,6 +85,7 @@ fi
 cd ${BUILD_DIR}
 cmake ../.. \
     -DTARGET_SOC=${TARGET_SOC} \
+    -DENABLE_DMA32=${ENABLE_DMA32} \
     -DCMAKE_SYSTEM_NAME=Linux \
     -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
 make -j4

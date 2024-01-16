@@ -264,6 +264,9 @@ def get_real_box(src_shape, box, dw, dh, ratio):
     return bbox
 
 def get_real_seg(origin_shape, new_shape, dw, dh, seg):
+    #! fix side effect
+    dw=int(dw)
+    dh=int(dh)
     if (dh == 0) and (dw == 0) and origin_shape == new_shape:
         return seg
     elif dh == 0 and dw != 0:

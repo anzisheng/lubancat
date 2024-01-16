@@ -10,7 +10,7 @@
 #define OBJ_NUMB_MAX_SIZE 128
 #define OBJ_CLASS_NUM 80
 #define NMS_THRESH 0.45
-#define BOX_THRESH 0.25
+#define BOX_THRESH 0.30
 #define PROP_BOX_SIZE (5 + OBJ_CLASS_NUM)
 
 #define PROTO_CHANNEL 32

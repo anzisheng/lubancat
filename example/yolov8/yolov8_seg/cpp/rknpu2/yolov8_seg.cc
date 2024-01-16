@@ -5,6 +5,7 @@
 
 #include "yolov8_seg.h"
 #include "image_utils.h"
+#include "dma_alloc.h"
 
 static void dump_tensor_attr(rknn_tensor_attr *attr)
 {
@@ -189,12 +190,24 @@ int inference_yolov8_seg_model(rknn_app_context_t *app_ctx, image_buffer_t *img,
     dst_img.height = app_ctx->model_height;
     dst_img.format = IMAGE_FORMAT_RGB888;
     dst_img.size = get_image_size(&dst_img);
+#if defined(DMA_ALLOC_DMA32)
+    /*
+     * Allocate dma_buf within 4G from dma32_heap,
+     * return dma_fd and virtual address.
+     */
+    ret = dma_buf_alloc(DMA_HEAP_DMA32_UNCACHE_PATCH, dst_img.size, &dst_img.fd, (void **)&dst_img.virt_addr);
+    if (ret < 0) {
+        printf("alloc dma32_heap buffer failed!\n");
+        return -1;
+    }
+#else
     dst_img.virt_addr = (unsigned char *)malloc(dst_img.size);
     if (dst_img.virt_addr == NULL)
     {
         printf("malloc buffer size:%d fail!\n", dst_img.size);
         return -1;
     }
+#endif
 
     // letterbox
     ret = convert_image_with_letterbox(img, &dst_img, &letter_box, bg_color);
@@ -250,7 +263,11 @@ int inference_yolov8_seg_model(rknn_app_context_t *app_ctx, image_buffer_t *img,
 out:
     if (dst_img.virt_addr != NULL)
     {
+        #if defined(DMA_ALLOC_DMA32)
+        dma_buf_free(dst_img.size, &dst_img.fd, dst_img.virt_addr);
+        #else
         free(dst_img.virt_addr);
+        #endif
     }
 
     return ret;
