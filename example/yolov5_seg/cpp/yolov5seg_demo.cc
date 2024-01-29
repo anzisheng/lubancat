@@ -90,21 +90,28 @@ int main(int argc, char **argv)
 
     // 初始化
     init_post_process();
-
+#ifndef ENABLE_ZERO_COPY
     ret = init_yolov5_seg_model(model_path, &rknn_app_ctx);
+#else
+    ret = init_yolov5seg_zero_copy_model(model_path, &rknn_app_ctx);
+#endif
     if (ret != 0)
     {
-        printf("init_yolov5_seg_model fail! ret=%d model_path=%s\n", ret, model_path);
+        printf("init yolov5seg_model fail! ret=%d model_path=%s\n", ret, model_path);
         goto out;
     }
 
     // rknn推理和处理
     gettimeofday(&start_time, NULL);
     object_detect_result_list od_results;
+#ifndef ENABLE_ZERO_COPY
     ret = inference_yolov5_seg_model(&rknn_app_ctx, &src_image, &od_results);
+#else
+    ret = inference_yolov5seg_zero_copy_model(&rknn_app_ctx, &src_image, &od_results);
+#endif
     if (ret != 0)
     {
-        printf("init_yolov5_seg_model fail! ret=%d\n", ret);
+        printf("inference yolov5seg_model fail! ret=%d\n", ret);
         goto out;
     }
 
@@ -162,10 +169,14 @@ int main(int argc, char **argv)
 out:
     deinit_post_process();
 
+#ifndef ENABLE_ZERO_COPY
     ret = release_yolov5_seg_model(&rknn_app_ctx);
+#else
+    ret = release_yolov5seg_zero_copy_model(&rknn_app_ctx);
+#endif
     if (ret != 0)
     {
-        printf("release_yolov5_seg_model fail! ret=%d\n", ret);
+        printf("release yolov5seg_model fail! ret=%d\n", ret);
     }
 
     return 0;

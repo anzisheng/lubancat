@@ -10,7 +10,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 find_package(OpenCV REQUIRED)
 
 # rga
-set(RGA_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/librga)
+set(RGA_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/librga)
 set(LIBRGA ${RGA_PATH}/${CMAKE_SYSTEM_NAME}/aarch64/librga.a)
 set(RGA_INCLUDES ${RGA_PATH}/include)
 install(PROGRAMS ${RGA_PATH}/${CMAKE_SYSTEM_NAME}/aarch64/librga.so DESTINATION lib)
@@ -26,7 +26,7 @@ if (ENABLE_DMA32 STREQUAL "TRUE")
 endif()
 
 # dma
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/allocator/dma)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/allocator/dma)
 
 # rknn runtime
 if (TARGET_SOC STREQUAL "rk3588" OR TARGET_SOC STREQUAL "rk356x")

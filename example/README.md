@@ -1,4 +1,4 @@
-# 目录
+# 目录说明
 
 | 目录                | 对应教程章节                       |
 | ------------------ | --------------------------------- |
@@ -10,3 +10,14 @@
 | yolov5             | YOLOv5(目标检测)                 |
 | yolov5_seg         | YOLOv5(实例分割)                 |
 | yolov8             | YOLOv8                 |
+
+# 文件说明
+
+scaling_frequency.sh 是系统CPU，DDR，NPU频率修改脚本，例如：
+
+```sh
+# USAGE: ./fixed_frequency.sh -c {chip_name} [-h]"
+# "  -c:  chip_name, such as rv1126 / rk3588"
+# "  -h:  Help"
+sudo bash scaling_frequency.sh -c rk3568
+```

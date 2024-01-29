@@ -21,8 +21,13 @@
 typedef struct {
     rknn_context rknn_ctx;
     rknn_input_output_num io_num;
+    
     rknn_tensor_attr* input_attrs;
     rknn_tensor_attr* output_attrs;
+
+    rknn_tensor_mem **input_mems;
+    rknn_tensor_mem **output_mems;
+
     int model_channel;
     int model_width;
     int model_height;
@@ -31,11 +36,18 @@ typedef struct {
 
 #include "postprocess.h"
 
-
 int init_yolov5_seg_model(const char* model_path, rknn_app_context_t* app_ctx);
 
 int release_yolov5_seg_model(rknn_app_context_t* app_ctx);
 
 int inference_yolov5_seg_model(rknn_app_context_t* app_ctx, image_buffer_t* img, object_detect_result_list* od_results);
+
+int get_type_size(rknn_tensor_type type);
+
+int release_yolov5seg_zero_copy_model(rknn_app_context_t *app_ctx);
+
+int init_yolov5seg_zero_copy_model(const char *model_path, rknn_app_context_t *app_ctx);
+
+int inference_yolov5seg_zero_copy_model(rknn_app_context_t *app_ctx, image_buffer_t *img, object_detect_result_list *od_results);
 
 #endif //_RKNN_DEMO_YOLOV5_SEG_H_

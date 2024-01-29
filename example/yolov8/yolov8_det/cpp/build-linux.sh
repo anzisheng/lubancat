@@ -3,7 +3,7 @@
 set -e
 
 echo "$0 $@"
-while getopts ":t:a:d:b:m" opt; do
+while getopts ":t:d" opt; do
   case $opt in
     t)
       TARGET_SOC=$OPTARG
@@ -26,6 +26,7 @@ if [ -z ${TARGET_SOC} ] ; then
   echo "$0 -t <target> "
   echo ""
   echo "    -t : target (rk356x/rk3588)"
+  echo "    -d : enable dma32"
   echo "such as: $0 -t rk3588 "
   echo ""
   exit -1

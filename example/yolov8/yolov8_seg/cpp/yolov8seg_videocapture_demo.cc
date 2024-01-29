@@ -101,7 +101,7 @@ int main(int argc, char **argv)
     ret = init_yolov8_seg_model(model_path, &rknn_app_ctx);
     if (ret != 0)
     {
-        printf("init_yolov5_seg_model fail! ret=%d model_path=%s\n", ret, model_path);
+        printf("init_yolov8_seg_model fail! ret=%d model_path=%s\n", ret, model_path);
         goto out;
     }
 
@@ -123,7 +123,7 @@ int main(int argc, char **argv)
         ret = inference_yolov8_seg_model(&rknn_app_ctx, &src_image, &od_results);
         if (ret != 0)
         {
-            printf("init_yolov5_seg_model fail! ret=%d\n", ret);
+            printf("init_yolov8_seg_model fail! ret=%d\n", ret);
             goto out;
         }
 
@@ -177,7 +177,7 @@ int main(int argc, char **argv)
         float t = (__get_us(stop_time) - __get_us(start_time))/1000;
         printf("Infer time(ms): %f ms\n", t);
 		putText(frame, cv::format("FPS: %.2f", 1.0 / (t / 1000)), cv::Point(10, 30), cv::FONT_HERSHEY_PLAIN, 2.0, cv::Scalar(255, 0, 0), 2, 8);
-		cv::imshow("YOLOv5_Seg C++ Demo", frame);
+		cv::imshow("YOLOv8_Seg C++ Demo", frame);
 
 		char c = cv::waitKey(1);
 		if (c == 27) { // ESC
@@ -192,7 +192,7 @@ out:
     ret = release_yolov8_seg_model(&rknn_app_ctx);
     if (ret != 0)
     {
-        printf("release_yolov5_seg_model fail! ret=%d\n", ret);
+        printf("release_yolov8_seg_model fail! ret=%d\n", ret);
     }
 
     return 0;

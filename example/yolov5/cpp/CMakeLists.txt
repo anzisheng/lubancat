@@ -5,7 +5,7 @@ project(rknn_yolov5_demo)
 set(CMAKE_INSTALL_RPATH "$ORIGIN/lib")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-# opencv
+# 从系统中查找opencv
 find_package(OpenCV REQUIRED)
 
 # rga
@@ -22,6 +22,11 @@ endif()
 # RGA2 only support under 4G memory
 if (ENABLE_DMA32 STREQUAL "TRUE")
     add_definitions(-DDMA_ALLOC_DMA32)
+endif()
+
+# support rknn zero copy api
+if (ENABLE_ZERO_COPY STREQUAL "TRUE")
+    add_definitions(-DENABLE_ZERO_COPY)
 endif()
 
 # rknn runtime
