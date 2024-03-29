@@ -1,0 +1,8 @@
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/install/strip.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/install.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/list_install_components.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/rebuild_cache.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/edit_cache.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/install/local.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/taco_yolov8seg_videocapture.dir
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/build/build_rk3588_linux/CMakeFiles/taco_yolov8_seg.dir

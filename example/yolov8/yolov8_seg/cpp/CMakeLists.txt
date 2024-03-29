@@ -6,8 +6,14 @@ set(CMAKE_INSTALL_RPATH "$ORIGIN/lib")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 # 从系统查找opencv
-# set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../3rdparty/opencv/opencv-linux-aarch64/share/OpenCV)
+# set(OpenCV_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/opencv/opencv-linux-aarch64/share/OpenCV)
 find_package(OpenCV REQUIRED)
+
+# 查找自行编译安装的OpenCV，请修改下面的OpenCV_DIR路径
+# set(OpenCV_DIR /path/opencv/lib/cmake/opencv4)
+# find_package(OpenCV REQUIRED)
+# file(GLOB OpenCV_FILES "${OpenCV_DIR}/../../libopencv*")
+# install(PROGRAMS ${OpenCV_FILES} DESTINATION lib)
 
 # rga
 set(RGA_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../3rdparty/librga)

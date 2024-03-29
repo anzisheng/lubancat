@@ -21,13 +21,8 @@
 #include <ctype.h>
 
 #include "yolov8_seg.h"
+#include "easy_timer.h"
 #include <opencv2/opencv.hpp>
-
-/*-------------------------------------------
-                  Functions
--------------------------------------------*/
-
-double __get_us(struct timeval t) { return (t.tv_sec * 1000000 + t.tv_usec); }
 
 /*-------------------------------------------
                   Main Function
@@ -69,6 +64,7 @@ int main(int argc, char **argv)
     };
 
     int ret;
+    TIMER timer0;
     cv::Mat image, frame;
     struct timeval start_time, stop_time;
     rknn_app_context_t rknn_app_ctx;
@@ -87,6 +83,8 @@ int main(int argc, char **argv)
             printf("Error: Could not open camera.\n");
             return -1;
         }
+        // cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);//宽度
+        // cap.set(cv::CAP_PROP_FRAME_HEIGHT, 640);//高度
     } else {
         // 打开视频文件
         cap.open(argv[2]);
@@ -106,7 +104,7 @@ int main(int argc, char **argv)
     }
 
 	while(true) {
-        gettimeofday(&start_time, NULL);
+        timer0.tik();
 
 		// cap >> frame;
         if (!cap.read(frame)) {  
@@ -173,9 +171,9 @@ int main(int argc, char **argv)
         }
 
 		// 计算FPS
-        gettimeofday(&stop_time, NULL);
-        float t = (__get_us(stop_time) - __get_us(start_time))/1000;
-        printf("Infer time(ms): %f ms\n", t);
+        timer0.tok();
+        timer0.print_time("once rknn run and process use");
+        float t = timer0.get_time(); 
 		putText(frame, cv::format("FPS: %.2f", 1.0 / (t / 1000)), cv::Point(10, 30), cv::FONT_HERSHEY_PLAIN, 2.0, cv::Scalar(255, 0, 0), 2, 8);
 		cv::imshow("YOLOv8_Seg C++ Demo", frame);
 

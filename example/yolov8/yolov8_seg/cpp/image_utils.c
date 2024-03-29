@@ -3,6 +3,7 @@
 #include <dirent.h>
 #include <math.h>
 #include <sys/time.h>
+#include <string.h>
 
 #include "im2d.h"
 #include "drmrga.h"

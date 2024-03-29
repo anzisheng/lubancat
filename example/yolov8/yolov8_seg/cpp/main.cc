@@ -21,13 +21,8 @@
 
 #include "yolov8_seg.h"
 #include "image_utils.h"
+#include "easy_timer.h"
 #include <opencv2/opencv.hpp>
-
-/*-------------------------------------------
-                  Functions
--------------------------------------------*/
-
-double __get_us(struct timeval t) { return (t.tv_sec * 1000000 + t.tv_usec); }
 
 /*-------------------------------------------
                   Main Function
@@ -67,6 +62,7 @@ int main(int argc, char **argv)
     };
 
     int ret;
+    TIMER timer0;
     cv::Mat orig_img, image;
     struct timeval start_time, stop_time;
     rknn_app_context_t rknn_app_ctx;
@@ -75,14 +71,11 @@ int main(int argc, char **argv)
     // 使用OpenCV读取图片
     image_buffer_t src_image;
     memset(&src_image, 0, sizeof(image_buffer_t));
-    // gettimeofday(&start_time, NULL);
     orig_img = cv::imread(image_path);
     if (!orig_img.data) {
         printf("cv::imread %s fail!\n", image_path);
         return -1;
     }
-    // gettimeofday(&stop_time, NULL);
-    // printf("OpenCV read an image using %f ms\n", (__get_us(stop_time) - __get_us(start_time)) / 1000);
     cv::cvtColor(orig_img, image, cv::COLOR_BGR2RGB);
     src_image.width  = image.cols;
     src_image.height = image.rows;
@@ -100,7 +93,7 @@ int main(int argc, char **argv)
     }
 
     // rknn推理和处理
-    gettimeofday(&start_time, NULL);
+    timer0.tik();
     object_detect_result_list od_results;
     ret = inference_yolov8_seg_model(&rknn_app_ctx, &src_image, &od_results);
     if (ret != 0)
@@ -154,8 +147,8 @@ int main(int argc, char **argv)
         putText(orig_img, text, cv::Point(x1, y1 - 6), cv::FONT_HERSHEY_DUPLEX, 0.7, cv::Scalar(255,255,255), 1, cv::LINE_AA);
     }
 
-    gettimeofday(&stop_time, NULL);
-    printf("rknn run and process use %f ms\n", (__get_us(stop_time) - __get_us(start_time)) / 1000);
+    timer0.tok();
+    timer0.print_time("rknn run and process use");
 
     // 保存结果
     cv::imwrite("./out.jpg", orig_img);

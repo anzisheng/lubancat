@@ -1,0 +1,7 @@
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/lib/librga.so
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/lib/librknnrt.so
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/./taco_yolov8_seg
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/./taco_yolov8seg_videocapture
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/model/batch_1_000001.jpg
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/model/taco_labels.txt
+/home/cat/yolov8/lubancat_ai_manual_code/example/taco_yolov8_seg/cpp/install/rk3588_linux/model/yolov8n_seg_rk3588.rknn
