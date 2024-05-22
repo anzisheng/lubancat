@@ -240,7 +240,7 @@ if __name__ == '__main__':
 
     # 指定平台，添加target_platform='rk3588'配置，默认rk3566
     print('--> Config model')
-    rknn.config(mean_values=[[0, 0, 0]], std_values=[[255, 255, 255]])
+    rknn.config(target_platform='rk3588', mean_values=[[0, 0, 0]], std_values=[[255, 255, 255]])
     print('done')
 
     # Load ONNX model
